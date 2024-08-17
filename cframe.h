@@ -5,9 +5,7 @@
 #include <QVector>
 #include <Reserva.h>
 #include <Mesa.h>
-#include <QTimer>
 #include "GuardarReservas.h"
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,6 +24,7 @@ public:
     bool verificarDisponibilidad(const QDate &fecha, const QTime &hora) const;
     QVector<QDateTime> sugerirAlternativas(const QDate &fecha, const QTime &hora);
     bool verificarDisponibilidadMesa(const QString &mesa, const QDate &fecha, const QTime &hora) const;
+    void cargarReservasDesdeArchivo();
 
     void consultarDisponibilidad(const QDate &fecha, const QTime &hora);
     void ReservaModificacion();
@@ -34,6 +33,7 @@ public:
     void inicializarMesas();
     void actualizarComboBoxMesas();
     void realizarRespaldo();
+    void Accesos();
 
 private slots:
     void on_pushButton_clicked();
@@ -50,17 +50,15 @@ private slots:
 
     void on_botonModificar_clicked();
 
-
     void on_botonCancelarReserva_clicked();
 
-    void on_botonRespaldoManual_clicked();
-
     void on_pushButton_7_clicked();
+
+    void on_botonUser_clicked();
 
 private:
     Ui::cframe *ui;
     QString TipoUsuario;
-    QTimer *backupTimer;
 
     QVector<Reserva> reservasLista;
     QString generarCodigoReserva();
